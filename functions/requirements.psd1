@@ -2,5 +2,5 @@
 # See https://aka.ms/functionsmanageddependency for additional information.
 #
 @{
-    finetuna = '*'
+    'finetuna' = '0.*'
 }
