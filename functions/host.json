@@ -17,7 +17,7 @@
   },
   "extensions": {
     "http" : {
-      "routePrefix": "v1"
+      "routePrefix": ""
     },
     "serviceBus": {
       "messageHandlerOptions": {
