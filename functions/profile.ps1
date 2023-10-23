@@ -20,29 +20,39 @@ Function Push-GoodRequest {
     [CmdletBinding()]
     param(
         [psobject[]]$Body,
-        [hashtable]$Headers
+        [hashtable]$Headers,
+        [string]$ContentType = "application/json"
     )
-
     if ("$Body".Length -eq 1 -or "$Body" -eq "Null" -or $null -eq $Body) {
         Write-Host "Body length is 1 or Null"
         Push-OutputBinding -Name Response -Value (
             [HttpResponseContext]@{
-                Headers    = $Headers
-                StatusCode = [HttpStatusCode]::OK
-                Body       = $Body
+                Headers     = $Headers
+                StatusCode  = [HttpStatusCode]::OK
+                Body        = $Body
+                ContentType = $ContentType
             }
         )
     } else {
+        Write-Host "Body length is greater than 1"
+        if ($ContentType -match "json") {
+            Write-Host "Converting to JSON"
+            $newbody = ($Body) | ConvertTo-Json -Compress
+        } else {
+            $newbody = $Body | Select-Object -First 1
+        }
+        
         Push-OutputBinding -Name Response -Value (
             [HttpResponseContext]@{
-                Headers    = $Headers
-                StatusCode = [HttpStatusCode]::OK
-                Body       = ($Body) | ConvertTo-Json -Compress
+                Headers     = $Headers
+                StatusCode  = [HttpStatusCode]::OK
+                Body        = "$newbody"
+                ContentType = $ContentType
             }
         )
     }
 }
- 
+
 Function Push-BadRequest {
     [CmdletBinding()]
     param(
@@ -68,3 +78,4 @@ Set-Alias Remove-ApiItem Get-ApiItem
 
 # usually you store this on the thing
 $env:OpenAIKey = Import-CliXml demo-only.xml
+Set-TuneModelDefault -Latest

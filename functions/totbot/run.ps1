@@ -4,31 +4,18 @@ param($Request, $TriggerMetadata)
 
 switch ($Request.Method) {
     "GET" {
-        $body = "
-            <!DOCTYPE html>
-            <html>
-            <body>
-
-            <h2>Ask Potato</h2>
-
-            <form action='' method='post'>
-            <label for='command'>Command:</label><br>
-            <input type='text' id='command' name='command'><br>
-            <input type='submit' value='Submit'>
-            </form> 
-
-            </body>
-            </html>"
-        
-        Push-GoodRequest -Body $body -ContentType "text/html"
+        Push-GoodRequest -Body (Invoke-TuneChat -Message "wyd")
     }
-    "post" {
-        # if it came from the form
-        $command = $Request.Form["command"].ToString()
+    "POST" {
+        if ($Request.Form) {
+            $command = $Request.Form["message"]
+        }
 
         if (-not $command) {
-            $command = $Request.Body.ToString()
+            $command = $Request.Body
         }
-        Push-GoodRequest -Body (Invoke-TuneChat -Message $command)
+        $command = $command.Replace("message=", "")
+        Write-Host "SENDING $command"
+        Push-GoodRequest -Body (Invoke-TuneChat -Message "$command")
     }
 }
