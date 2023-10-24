@@ -1,0 +1,13 @@
+{
+    "IsEncrypted": false,
+    "Values": {
+        "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=xyz;AccountKey=abc==;EndpointSuffix=core.windows.net",
+        "FUNCTIONS_WORKER_RUNTIME": "powershell",
+        "FUNCTIONS_EXTENSION_VERSION": "~4",
+        "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING": "DefaultEndpointsProtocol=https;AccountName=abc;AccountKey=xyz;EndpointSuffix=core.windows.net",
+        "WEBSITE_CONTENTSHARE": "akey",
+        "WEBSITE_RUN_FROM_PACKAGE": "1",
+        "APPINSIGHTS_INSTRUMENTATIONKEY": "a-guid",
+        "OpenAIKey": "xyz"
+    }
+}

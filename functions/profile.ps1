@@ -75,4 +75,6 @@ function Get-ApiItem {
 Set-Alias New-ApiItem Get-ApiItem
 Set-Alias Update-ApiItem Get-ApiItem
 Set-Alias Remove-ApiItem Get-ApiItem
+
+# Get the latest model
 Set-TuneModelDefault -Latest

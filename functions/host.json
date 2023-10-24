@@ -13,7 +13,7 @@
   },
   "extensionBundle": {
     "id": "Microsoft.Azure.Functions.ExtensionBundle",
-    "version": "[3.*, 4.0.0)"
+    "version": "[4.0.0, 5.0.0)"
   },
   "extensions": {
     "http" : {
@@ -26,7 +26,6 @@
         "maxConcurrentCalls": 16
       }
     }
-  },
-  "functionTimeout": "-1"
+  }
 }
 
