@@ -75,7 +75,4 @@ function Get-ApiItem {
 Set-Alias New-ApiItem Get-ApiItem
 Set-Alias Update-ApiItem Get-ApiItem
 Set-Alias Remove-ApiItem Get-ApiItem
-
-# usually you store this on the thing
-$env:OpenAIKey = Import-CliXml demo-only.xml
 Set-TuneModelDefault -Latest
